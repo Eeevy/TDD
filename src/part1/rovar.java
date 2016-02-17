@@ -4,8 +4,8 @@ package part1;
 public final class rovar
 {
 
-    private static String lower_consonants = "bcdfhjklmnpqrstvwxz";
-    private static String upper_consonants = "BCFGHJKLMNPQRSTVWXZ";
+    private static String lower_consonants = "bcdfhjklmnpqrstvwxz";//g saknas, därav fault!
+    private static String upper_consonants = "BCFGHJKLMNPQRSTVWXZ";//D saknas, därav fault!
 
     /// <summary>
     /// Encode the string in rovarspraket.
