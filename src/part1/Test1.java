@@ -19,7 +19,7 @@ public class Test1 {
 	
 	public void testUppercaseLetters() {
 		String input = "ABCDEFGHIJKLMNOPQRSTUVXYZÅÄÖ";
-		String expected = "ABoBCoCDoDEFoFGoGHoHIJoJKoKLoLMoMNoNOPoPQoQRoRSoSToTUVoVXoXYZoZÅÄÖ";
+		String expected = "ABOBCOCDODEFOFGOGHOHIJOJKOKLOLMOMNONOPOPQOQRORSOSTOTUVOVXOXYZOZÅÄÖ";
 		assertEquals(expected, rovar.enrov(input));
 	}
 	
