@@ -1,64 +1,97 @@
 package part1;
 
 import static org.junit.Assert.*;
-import junit.framework.Assert;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class Test1 {
-	
-	
+	private static Rovar testClass;
+
+	@BeforeClass
+	public static void beforeTests() throws Exception {
+		testClass = new Rovar();
+
+	}
+
 	@Test
 	public void testLowercaseLetters() {
-		rovar testClass = new rovar();
-
-		String input = "abcdefghijklmnopqrstuvxyzåäö";
-		String expected = "abobcocdodefofgoghohijojkoklolmomnonopopqoqrorsostotuvovxoxyzozåäö";
-		assertEquals(expected, rovar.enrov(input));
+		String input = "abcdefghijklmnopqrstuvxyz";
+		String expected = "abobcocdodefofgoghohijojkoklolmomnonopopqoqrorsostotuvovxoxyzoz";
+		assertEquals(expected, testClass.enrov(input));
 	}
-	
+
 	@Test
 	public void testUppercaseLetters() {
 		String input = "ABCDEFGHIJKLMNOPQRSTUVXYZÅÄÖ";
 		String expected = "ABOBCOCDODEFOFGOGHOHIJOJKOKLOLMOMNONOPOPQOQRORSOSTOTUVOVXOXYZOZÅÄÖ";
-		assertEquals(expected, rovar.enrov(input));
+		assertEquals(expected, testClass.enrov(input));
 	}
-	
-//	@Test
-//	public void test() {
-//		rovar testClass = new rovar();
-//		rovar.enrov("abcdefghijklmnopqrstuvxyzåäö");
-//		rovar.enrov("åäö");
-//		rovar.enrov("ABCDEFGHIJKLMNOPQRSTUVXYZÅÄÖ");
-//		rovar.enrov("00001237");
-//		rovar.enrov("5");
-//		rovar.enrov("");
-//		rovar.enrov(null);
-//		rovar.enrov("a77e666heJsaN");
-//		rovar.enrov("007HAHA");
-//		rovar.enrov("estar \n"
-//				+ "att skriva fler rader \n"
-//				+ "här");
-//		rovar.enrov("en rad");
-//		rovar.enrov("g");
-//		rovar.enrov("giltigt input");
-//		rovar.enrov("!”#°€%&/()=?`^^_.,<>");
-//
-//		rovar.derov("abcdefghijklmnopqrstuvxyzåäö");
-//		rovar.derov("åäö");
-//		rovar.derov("ABCDEFGHIJKLMNOPQRSTUVXYZÅÄÖ");
-//		rovar.derov("00001237");
-//		rovar.derov("5");
-//		rovar.derov("");
-//		rovar.derov(null);
-//		rovar.derov("a77e666heJsaN");
-//		rovar.derov("007HAHA");
-//		rovar.derov("estar \n"
-//				+ "att skriva fler rader \n"
-//				+ "här");
-//		rovar.derov("en rad");
-//		rovar.derov("g");
-//		rovar.derov("giltigt input");
-//		rovar.derov("!”#°€%&/()=?`^^_.,<>");
-//	}
+
+	@Test
+	public void testStrangeLetters() {
+		String input = "zåäö";
+		String expected = "zozåäö";
+		assertEquals(expected, testClass.enrov(input));
+	}
+
+	@Test
+	public void testNumbers() {
+		String input = "00001237";
+		String expected = "00001237";
+		assertEquals(expected, testClass.enrov(input));
+	}
+
+	@Test
+	public void testNumber() {
+		String input = "5";
+		String expected = "5";
+		assertEquals(expected, testClass.enrov(input));
+	}
+
+	@Test
+	public void testEmptyString() {
+		String input = "";
+		String expected = "";
+		assertEquals(expected, testClass.enrov(input));
+	}
+
+	@Test
+	public void testNull() {
+		String input = null;
+		String expected = "";
+//		assertEquals(expected, testClass.enrov(input));
+		assertNull(null, testClass.enrov(input));
+	}
+
+	@Test
+	public void testMixed() {
+		String input = "a77e666heJsaN";
+		String expected = "a77e666hoheJOJsosaNON";
+		assertEquals(expected, testClass.enrov(input));
+	}
+
+	@Test
+	public void testMixedAllChars() {
+		String input = "007HahA*!";
+		String expected = "007HOHahohA*!";
+		assertEquals(expected, testClass.enrov(input));
+	}
+
+
+	@Test
+	public void testOneChar() {
+		String input = "g";
+		String expected = "gog";
+		assertEquals(expected, testClass.enrov(input));
+	}
+
+	@Test
+	public void testSymbols() {
+		String input = "!”#°€%&/()=?`^^_.,<>";
+		String expected = "!”#°€%&/()=?`^^_.,<>";
+		assertEquals(expected, testClass.enrov(input));
+	}
+
 }
