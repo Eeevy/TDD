@@ -17,6 +17,7 @@ public class Test1 {
 		assertEquals(expected, rovar.enrov(input));
 	}
 	
+	@Test
 	public void testUppercaseLetters() {
 		String input = "ABCDEFGHIJKLMNOPQRSTUVXYZÅÄÖ";
 		String expected = "ABOBCOCDODEFOFGOGHOHIJOJKOKLOLMOMNONOPOPQOQRORSOSTOTUVOVXOXYZOZÅÄÖ";
