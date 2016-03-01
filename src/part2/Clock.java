@@ -31,7 +31,7 @@ public class Clock {
 	 * @param p4
 	 * @return current date or time.
 	 */
-	public String set(int p2, int p3, int p4) {
+	public String set(int hourOrYear, int minuteOrMonth, int secondOrDay) {
 		return null;
 	}
 
