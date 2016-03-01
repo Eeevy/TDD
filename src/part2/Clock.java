@@ -1,5 +1,8 @@
 package part2;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class Clock {
 	private Time theTime;
 	private Date theDate;
