@@ -27,19 +27,24 @@ public class TestClock {
 	}
 	
 	public void testResetAlterTime() {
+		String expected = "Alter Time";
+		assertEquals(expected, clockInstance.reset());
 		
 	}
 	
 	public void testTimeSet() {
-		
+		String expected = "15:15:22";
+		assertEquals(expected, clockInstance.reset());
 	}
 	
 	public void testResetAlterDate() {
-		
+		String expected = "Alter Date";
+		assertEquals(expected, clockInstance.reset());
 	}
 	
 	public void testDateSet() {
-		
+		String expected = "2016-03-01";
+		assertEquals(expected, clockInstance.reset());
 	}
 	
 	@Before
