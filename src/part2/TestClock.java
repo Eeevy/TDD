@@ -17,15 +17,19 @@ public class TestClock {
 
 	@Test
 	public void testChangeModeDate() {
+		if(clockInstance.getCurrentState() == State.SHOWDATE){
 		String expectedState = "2016-03-01";
 		assertEquals(expectedState, clockInstance.changeMode());
+		}
 	}
 
 	@Test
 	public void testChangeModeTime() {
+		if(clockInstance.getCurrentState() == State.SHOWTIME){
+
 		String expectedState = "15:15:22";
 		assertEquals(expectedState, clockInstance.changeMode());
-
+		}
 	}
 
 	@Test
