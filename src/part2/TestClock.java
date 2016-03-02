@@ -20,11 +20,10 @@ public class TestClock {
 	/**
 	 * S1 --> S2.
 	 */
-	public void testChangeModeDate() {
+	public void testChangeModeTimeToDate() {
 		if (clockInstance.getCurrentState() == State.SHOWTIME) {
-			String expectedState = "2016-03-01";
-//			String expected = 
-			assertEquals(expectedState, clockInstance.changeMode());
+			clockInstance.changeMode();
+			assertEquals(State.SHOWDATE, clockInstance.getCurrentState());
 			// State = SHOWDATE
 		}
 	}
@@ -33,10 +32,10 @@ public class TestClock {
 	/**
 	 * S2 --> S1.
 	 */
-	public void testChangeModeTime() {
+	public void testChangeModeDateToTime() {
 		if (clockInstance.getCurrentState() == State.SHOWDATE) {
-			String expectedState = "15:15:22";
-			assertEquals(expectedState, clockInstance.changeMode());
+			clockInstance.changeMode();
+			assertEquals(State.SHOWTIME, clockInstance.getCurrentState());
 			// State = SHOWTIME
 		}
 	}
@@ -47,9 +46,21 @@ public class TestClock {
 	 */
 	public void testResetAlterTime() {
 		if (clockInstance.getCurrentState() == State.SHOWTIME) {
-			String expected = "Alter Time";
-			assertEquals(expected, clockInstance.reset());
+			clockInstance.reset();
+			assertEquals(State.CHANGETIME, clockInstance.getCurrentState());
 			// State = CHANGETIME
+		}
+	}
+	
+	@Test
+	/**
+	 * S2 --> S4.
+	 */
+	public void testResetAlterDate() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
+			clockInstance.reset();
+			assertEquals(State.CHANGEDATE, clockInstance.getCurrentState());
+			// State = CHANGEDATE
 		}
 	}
 
@@ -59,23 +70,13 @@ public class TestClock {
 	 */
 	public void testTimeSet() {
 		if (clockInstance.getCurrentState() == State.CHANGETIME) {
-			String expected = "15:15:22";
-			assertEquals(expected, clockInstance.set(15, 15, 22));
+			clockInstance.set(15, 15, 22);
+			assertEquals(State.SHOWTIME, clockInstance.getCurrentState());
 			// State = SHOWTIME
 		}
 	}
 
-	@Test
-	/**
-	 * S2 --> S4.
-	 */
-	public void testResetAlterDate() {
-		if (clockInstance.getCurrentState() == State.SHOWDATE) {
-			String expected = "Alter Date";
-			assertEquals(expected, clockInstance.reset());
-			// State = CHANGEDATE
-		}
-	}
+	
 
 	@Test
 	/**
@@ -83,13 +84,19 @@ public class TestClock {
 	 */
 	public void testDateSet() {
 		if (clockInstance.getCurrentState() == State.CHANGEDATE) {
-			String expected = "2016-03-01";
-			assertEquals(expected, clockInstance.set(2016, 03, 01));
+			clockInstance.set(2000, 06, 24);
+			assertEquals(State.SHOWDATE, clockInstance.getCurrentState());
 			// State = SHOWDATE
 		}
 	}
 	
-	// Nedanstående testmetoder testar gränsvärden enligt Border Value Analysis,
+	
+
+	// Nedanstående testmetoder testar gränsvärden enligt Border Value Analysis.
+
+	// Borde anropa reset-metoden istället om logiken ska bli rätt. Annars måste
+	// det ändras så att det verkligen är SET istället. Jag har utgått från att
+	// testmetoderna använder reset/alter time istället för set.
 
 	// S1 till S3 - Reset/Alter Time
 	@Test
@@ -217,18 +224,18 @@ public class TestClock {
 	@Test
 	public void testSetDateLowBVA1() {
 		if (clockInstance.getCurrentState() == State.SHOWDATE) {
-		String expected = "2001-01-01";
-		assertEquals(expected, clockInstance.set(2001, 02, 02));
-		// State = CHANGEDATE
+			String expected = "2001-01-01";
+			assertEquals(expected, clockInstance.set(2001, 02, 02));
+			// State = CHANGEDATE
 		}
 	}
 
 	@Test
 	public void testSetDateLowBVA2() {
 		if (clockInstance.getCurrentState() == State.SHOWDATE) {
-		String expected = "2000-01-01";
-		assertEquals(expected, clockInstance.set(2000, 01, 01));
-		// State = CHANGEDATE
+			String expected = "2000-01-01";
+			assertEquals(expected, clockInstance.set(2000, 01, 01));
+			// State = CHANGEDATE
 		}
 	}
 
@@ -236,27 +243,28 @@ public class TestClock {
 	@Test
 	public void testSetDateMonthLowBVA3() {
 		if (clockInstance.getCurrentState() == State.SHOWDATE) {
-		String expected = null;
-		assertNull(expected, clockInstance.set(1999, 00, 00));
+			String expected = null;
+			assertNull(expected, clockInstance.set(1999, 00, 00));
 		}
 	}
 
 	// Following methods test february inputs
+
 	@Test
 	public void testSetDateFebruaryBVA1() {
 		if (clockInstance.getCurrentState() == State.SHOWDATE) {
-		String expected = "2099-11-28";
-		assertEquals(expected, clockInstance.set(2099, 11, 28));
-		// State = CHANGEDATE
+			String expected = "2099-11-28";
+			assertEquals(expected, clockInstance.set(2099, 11, 28));
+			// State = CHANGEDATE
 		}
 	}
 
 	@Test
 	public void testSetDateFebruaryBVA2() {
 		if (clockInstance.getCurrentState() == State.SHOWDATE) {
-		String expected = "2099-12-29";
-		assertEquals(expected, clockInstance.set(2099, 12, 29));
-		// State = CHANGEDATE
+			String expected = "2099-12-29";
+			assertEquals(expected, clockInstance.set(2099, 12, 29));
+			// State = CHANGEDATE
 		}
 	}
 
@@ -264,9 +272,9 @@ public class TestClock {
 	@Test
 	public void testSetDateFebruaryLowBVA3() {
 		if (clockInstance.getCurrentState() == State.SHOWDATE) {
-		String expected = null;
-		assertNull(expected, clockInstance.set(2101, 13, 30));
-		// State = SHOWDATE (OFÖRÄNDRAT)
+			String expected = null;
+			assertNull(expected, clockInstance.set(2101, 13, 30));
+			// State = SHOWDATE (OFÖRÄNDRAT)
 		}
 	}
 
