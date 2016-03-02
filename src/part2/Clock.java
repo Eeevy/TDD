@@ -48,12 +48,20 @@ public class Clock {
 
 	/**
 	 * Applies to Time or Date depending on which state the clock is in. The returner string is the current date or current time.
-	 * @param p2
-	 * @param p3
-	 * @param p4
-	 * @return current date or time.
+	 * @param hourOrYear
+	 * @param minuteOrMonth
+	 * @param secondOrDay
+	 * @return current date or time depending on state
 	 */
 	public String set(int hourOrYear, int minuteOrMonth, int secondOrDay) {
+		if(this.currentState == State.CHANGETIME){
+			theTime.timeSet(hourOrYear, minuteOrMonth, secondOrDay);
+			this.currentState = State.SHOWTIME;
+			return theTime.showTime();
+		}else if(this.currentState == State.CHANGEDATE){
+			theDate.dateSet(hourOrYear, minuteOrMonth, secondOrDay);
+			this.currentState = State.SHOWDATE;
+		}
 		return null;
 	}
 	
