@@ -3,9 +3,9 @@ package part2;
 
 
 public class Clock {
-	// private Time theTime = "15:15:22";
-	// private Date theDate = "2016-03-01"; // vi antar att datum och tid skall vara statiskt eller skall detta implementeras som en uppräkning?
-
+	 private Time theTime = "15:15:22";
+	 private Date theDate = "2016-03-01"; // vi antar att datum och tid skall vara statiskt eller skall detta implementeras som en uppräkning?
+	 private State currentState;
 	/**
 	 * Toggles between Time and Date. The return value contains current date or
 	 * current time.
@@ -33,6 +33,10 @@ public class Clock {
 	 */
 	public String set(int hourOrYear, int minuteOrMonth, int secondOrDay) {
 		return null;
+	}
+	
+	public State getCurrentState(){
+		return this.currentState;
 	}
 
 }
