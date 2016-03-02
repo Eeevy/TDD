@@ -8,53 +8,66 @@ import org.junit.Test;
 
 public class TestClock {
 	private static Clock clockInstance;
-	private State state;
+	private static State state;
 	
 	@BeforeClass
 	public void setUpBeforeClass() throws Exception {
 		this.clockInstance = new Clock();
+//		this.state = state; ?
 	}
 
 	@Test
 	public void testChangeModeDate() {
-		if(clockInstance.getCurrentState() == State.SHOWDATE){
+		if(clockInstance.getCurrentState() == State.SHOWTIME){
 		String expectedState = "2016-03-01";
 		assertEquals(expectedState, clockInstance.changeMode());
+		// State = SHOWDATE
 		}
 	}
 
 	@Test
 	public void testChangeModeTime() {
-		if(clockInstance.getCurrentState() == State.SHOWTIME){
-
+		if(clockInstance.getCurrentState() == State.SHOWDATE){
 		String expectedState = "15:15:22";
 		assertEquals(expectedState, clockInstance.changeMode());
+		// State = SHOWTIME
 		}
 	}
 
 	@Test
 	public void testResetAlterTime() {
+		if (clockInstance.getCurrentState() == State.SHOWTIME) {
 		String expected = "Alter Time";
 		assertEquals(expected, clockInstance.reset());
-
+		// State = CHANGETIME
+		}
 	}
 
 	@Test
 	public void testTimeSet() {
+		if (clockInstance.getCurrentState() == State.CHANGETIME) {
 		String expected = "15:15:22";
 		assertEquals(expected, clockInstance.set(15, 15, 22));
+		// State = 	SHOWTIME
+		}
 	}
 
 	@Test
 	public void testResetAlterDate() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
 		String expected = "Alter Date";
 		assertEquals(expected, clockInstance.reset());
+		// State = CHANGEDATE
+		}
 	}
 
 	@Test
 	public void testDateSet() {
+		if (clockInstance.getCurrentState() == State.CHANGEDATE) {
 		String expected = "2016-03-01";
 		assertEquals(expected, clockInstance.set(2016, 03, 01));
+		// State = SHOWDATE
+		}
 	}
 
 	@Test
