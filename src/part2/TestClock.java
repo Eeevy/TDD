@@ -74,9 +74,9 @@ public class TestClock {
 	@Test
 	public void testSetTimeHighBVA1() {
 		if (clockInstance.getCurrentState() == State.SHOWTIME) {
-		String expected = "23:58:58";
-		assertEquals(expected, clockInstance.set(23, 58, 58));
-		// State = CHANGETIME
+			String expected = "23:58:58";
+			assertEquals(expected, clockInstance.set(23, 58, 58));
+			// State = CHANGETIME
 		}
 	}
 
@@ -84,9 +84,9 @@ public class TestClock {
 	@Test
 	public void testSetTimeHighBVA2() {
 		if (clockInstance.getCurrentState() == State.SHOWTIME) {
-		String expected = "24:59:59";
-		assertEquals(expected, clockInstance.set(24, 59, 59));
-		// State = CHANGETIME
+			String expected = "24:59:59";
+			assertEquals(expected, clockInstance.set(24, 59, 59));
+			// State = CHANGETIME
 		}
 	}
 
@@ -95,8 +95,8 @@ public class TestClock {
 	@Test
 	public void testSetTimeHighBVA3() {
 		if (clockInstance.getCurrentState() == State.SHOWTIME) {
-		assertNull(null, clockInstance.set(25, 60, 60));
-		// State = CHANGETIME
+			assertNull(null, clockInstance.set(25, 60, 60));
+			// State = CHANGETIME
 		}
 	}
 
@@ -104,9 +104,9 @@ public class TestClock {
 	@Test
 	public void testSetTimeLowBVA1() {
 		if (clockInstance.getCurrentState() == State.SHOWTIME) {
-		String expected = "02:01:01";
-		assertEquals(expected, clockInstance.set(02, 01, 01));
-		// State = CHANGETIME
+			String expected = "02:01:01";
+			assertEquals(expected, clockInstance.set(02, 01, 01));
+			// State = CHANGETIME
 		}
 	}
 
@@ -114,9 +114,9 @@ public class TestClock {
 	@Test
 	public void testSetTimeLowBVA2() {
 		if (clockInstance.getCurrentState() == State.SHOWTIME) {
-		String expected = "01:00:00";
-		assertEquals(expected, clockInstance.set(01, 00, 00));
-		// State = CHANGETIME
+			String expected = "01:00:00";
+			assertEquals(expected, clockInstance.set(01, 00, 00));
+			// State = CHANGETIME
 		}
 	}
 
@@ -124,9 +124,9 @@ public class TestClock {
 	@Test
 	public void testSetTimeLowBVA3() {
 		if (clockInstance.getCurrentState() == State.SHOWTIME) {
-		String expected = null;
-		assertNull(expected, clockInstance.set(00, -1, -1));
-		// State = CHANGETIME
+			String expected = null;
+			assertNull(expected, clockInstance.set(00, -1, -1));
+			// State = SHOWTIME (OFÖRÄNDRAT)
 		}
 	}
 
@@ -134,88 +134,125 @@ public class TestClock {
 	// dec
 
 	@Test
-	public void testDateOddMonthHighBVA1() {
-		String expected = "2100-12-30";
-		assertEquals(expected, clockInstance.set(2100, 12, 30));
+	public void testSetDateOddMonthHighBVA1() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
+			String expected = "2100-12-30";
+			assertEquals(expected, clockInstance.set(2100, 12, 30));
+			// State = CHANGEDATE
+		}
 	}
 
 	@Test
-	public void testDateOddMonthHighBVA2() {
-		String expected = "2100-12-31";
-		assertEquals(expected, clockInstance.set(2100, 12, 31));
+	public void testSetDateOddMonthHighBVA2() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
+			String expected = "2100-12-31";
+			assertEquals(expected, clockInstance.set(2100, 12, 31));
+			// State = CHANGEDATE
+		}
 	}
 
 	// Fail
 	@Test
-	public void testDateOddMonthHighBVA3() {
-		String expected = null;
-		assertNull(expected, clockInstance.set(2101, 13, 32));
+	public void testSetDateOddMonthHighBVA3() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
+			String expected = null;
+			assertNull(expected, clockInstance.set(2101, 13, 32));
+			// State = SHOWDATE (OFÖRÄNDRAT)
+		}
 	}
 
 	// Following testMethods tests EVEN months; apr, jun, sept, nov
 
 	@Test
-	public void testDateEvenMonthHighBVA1() {
-		String expected = "2100-12-29";
-		assertEquals(expected, clockInstance.set(2100, 12, 29));
+	public void testSetDateEvenMonthHighBVA1() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
+			String expected = "2100-12-29";
+			assertEquals(expected, clockInstance.set(2100, 12, 29));
+			// State = CHANGEDATE
+		}
 	}
 
 	@Test
-	public void testDateEvenMonthHighBVA2() {
-		String expected = "2100-12-30";
-		assertEquals(expected, clockInstance.set(2100, 12, 30));
+	public void testSetDateEvenMonthHighBVA2() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
+			String expected = "2100-12-30";
+			assertEquals(expected, clockInstance.set(2100, 12, 30));
+			// State = CHANGEDATE
+		}
 	}
 
 	// Fail
 	@Test
-	public void testDateEvenMonthHighBVA3() {
-		String expected = null;
-		assertNull(expected, clockInstance.set(2101, 13, 31));
+	public void testSetDateEvenMonthHighBVA3() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
+			String expected = null;
+			assertNull(expected, clockInstance.set(2101, 13, 31));
+			// State = SHOWDATE (OFÖRÄNDRAT)
+		}
 	}
 
 	// Following methods tests low borders Odd+even months
 
 	@Test
 	public void testSetDateLowBVA1() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
 		String expected = "2001-01-01";
 		assertEquals(expected, clockInstance.set(2001, 02, 02));
+		// State = CHANGEDATE
+		}
 	}
 
 	@Test
 	public void testSetDateLowBVA2() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
 		String expected = "2000-01-01";
 		assertEquals(expected, clockInstance.set(2000, 01, 01));
-
+		// State = CHANGEDATE
+		}
 	}
 
 	// Fail
 	@Test
 	public void testSetDateMonthLowBVA3() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
 		String expected = null;
 		assertNull(expected, clockInstance.set(1999, 00, 00));
+		}
 	}
 
 	// Following methods test february inputs
 	@Test
 	public void testSetDateFebruaryBVA1() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
 		String expected = "2099-11-28";
 		assertEquals(expected, clockInstance.set(2099, 11, 28));
-
+		// State = CHANGEDATE
+		}
 	}
 
 	@Test
 	public void testSetDateFebruaryBVA2() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
 		String expected = "2099-12-29";
 		assertEquals(expected, clockInstance.set(2099, 12, 29));
-
+		// State = CHANGEDATE
+		}
 	}
 
 	// Fail
 	@Test
 	public void testSetDateFebruaryLowBVA3() {
+		if (clockInstance.getCurrentState() == State.SHOWDATE) {
 		String expected = null;
 		assertNull(expected, clockInstance.set(2101, 13, 30));
+		// State = SHOWDATE (OFÖRÄNDRAT)
+		}
 	}
+
+	/*
+	 * LÄGG TILL FLER TESTMETODER SOM TESTAR CHANGEDATE --> SHOWDATE SAMT
+	 * CHANGETIME --> SHOWTIME. ELLER?
+	 */
 
 	@Before
 	public static void setUp() throws Exception {
