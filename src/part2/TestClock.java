@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class TestClock {
 	private static Clock clockInstance;
+	private State state;
 	
 	@BeforeClass
 	public void setUpBeforeClass() throws Exception {
