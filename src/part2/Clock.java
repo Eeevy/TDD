@@ -20,13 +20,13 @@ public class Clock {
 	 * @return current date or time.
 	 */
 	public String changeMode() {
-		if(this.currentState==State.SHOWDATE){
-			this.currentState = State.SHOWTIME;
-			return theTime.showTime();
-		}else if(this.currentState == State.SHOWTIME){
-			this.currentState = State.SHOWDATE;
-			return theDate.showDate();
-		}
+//		if(this.currentState==State.SHOWDATE){
+//			this.currentState = State.SHOWTIME;
+//			return theTime.showTime();
+//		}else if(this.currentState == State.SHOWTIME){
+//			this.currentState = State.SHOWDATE;
+//			return theDate.showDate();
+//		}
 		return null;
 		
 	}
@@ -36,13 +36,13 @@ public class Clock {
 	 * @return
 	 */
 	public String reset() {
-		if(this.currentState == State.SHOWTIME){
-			this.currentState = State.CHANGETIME;
-			return "Alter Time";
-		}else if(this.currentState == State.SHOWDATE){
-			this.currentState = State.CHANGEDATE;
-			return "Alter Date";
-		}
+//		if(this.currentState == State.SHOWTIME){
+//			this.currentState = State.CHANGETIME;
+//			return "Alter Time";
+//		}else if(this.currentState == State.SHOWDATE){
+//			this.currentState = State.CHANGEDATE;
+//			return "Alter Date";
+//		}
 		return null;
 	}
 
@@ -54,14 +54,14 @@ public class Clock {
 	 * @return current date or time depending on state
 	 */
 	public String set(int hourOrYear, int minuteOrMonth, int secondOrDay) {
-		if(this.currentState == State.CHANGETIME){
-			theTime.timeSet(hourOrYear, minuteOrMonth, secondOrDay);
-			this.currentState = State.SHOWTIME;
-			return theTime.showTime();
-		}else if(this.currentState == State.CHANGEDATE){
-			theDate.dateSet(hourOrYear, minuteOrMonth, secondOrDay);
-			this.currentState = State.SHOWDATE;
-		}
+//		if(this.currentState == State.CHANGETIME){
+//			theTime.timeSet(hourOrYear, minuteOrMonth, secondOrDay);
+//			this.currentState = State.SHOWTIME;
+//			return theTime.showTime();
+//		}else if(this.currentState == State.CHANGEDATE){
+//			theDate.dateSet(hourOrYear, minuteOrMonth, secondOrDay);
+//			this.currentState = State.SHOWDATE;
+//		}
 		return null;
 	}
 	
