@@ -17,15 +17,22 @@ public class TestClock {
 	}
 
 	@Test
+	/**
+	 * S1 --> S2.
+	 */
 	public void testChangeModeDate() {
 		if (clockInstance.getCurrentState() == State.SHOWTIME) {
 			String expectedState = "2016-03-01";
+//			String expected = 
 			assertEquals(expectedState, clockInstance.changeMode());
 			// State = SHOWDATE
 		}
 	}
 
 	@Test
+	/**
+	 * S2 --> S1.
+	 */
 	public void testChangeModeTime() {
 		if (clockInstance.getCurrentState() == State.SHOWDATE) {
 			String expectedState = "15:15:22";
@@ -35,6 +42,9 @@ public class TestClock {
 	}
 
 	@Test
+	/**
+	 * S1 --> S3.
+	 */
 	public void testResetAlterTime() {
 		if (clockInstance.getCurrentState() == State.SHOWTIME) {
 			String expected = "Alter Time";
@@ -44,6 +54,9 @@ public class TestClock {
 	}
 
 	@Test
+	/**
+	 * S3 --> S1.
+	 */
 	public void testTimeSet() {
 		if (clockInstance.getCurrentState() == State.CHANGETIME) {
 			String expected = "15:15:22";
@@ -53,6 +66,9 @@ public class TestClock {
 	}
 
 	@Test
+	/**
+	 * S2 --> S4.
+	 */
 	public void testResetAlterDate() {
 		if (clockInstance.getCurrentState() == State.SHOWDATE) {
 			String expected = "Alter Date";
@@ -62,6 +78,9 @@ public class TestClock {
 	}
 
 	@Test
+	/**
+	 * S4 --> S2.
+	 */
 	public void testDateSet() {
 		if (clockInstance.getCurrentState() == State.CHANGEDATE) {
 			String expected = "2016-03-01";
@@ -69,6 +88,8 @@ public class TestClock {
 			// State = SHOWDATE
 		}
 	}
+	
+	// Nedanstående testmetoder testar gränsvärden enligt Border Value Analysis,
 
 	// S1 till S3 - Reset/Alter Time
 	@Test
