@@ -69,5 +69,6 @@ public class Clock {
 	public State getCurrentState(){
 		return this.currentState;
 	}
+	
 
 }

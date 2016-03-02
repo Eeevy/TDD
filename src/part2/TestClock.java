@@ -92,11 +92,7 @@ public class TestClock {
 	
 	
 
-	// Nedanstående testmetoder testar gränsvärden enligt Border Value Analysis.
-
-	// Borde anropa reset-metoden istället om logiken ska bli rätt. Annars måste
-	// det ändras så att det verkligen är SET istället. Jag har utgått från att
-	// testmetoderna använder reset/alter time istället för set.
+	// Following operations test Time and Date objects according to BVA
 
 	// S3 --> S1 - set
 	@Test
@@ -158,7 +154,7 @@ public class TestClock {
 		}
 	}
 
-	// Following testMethods tests ODD months; jan, mar, may, july, aug, oct,
+	// Following operations tests ODD months; jan, mar, may, july, aug, oct,
 	// dec
 
 	// S4 --> S2 - set
@@ -192,7 +188,7 @@ public class TestClock {
 		}
 	}
 
-	// Following testMethods tests EVEN months; apr, jun, sept, nov
+	// Following operations tests EVEN months; apr, jun, sept, nov
 
 	// S4 --> S2 - set
 	@Test
@@ -225,7 +221,7 @@ public class TestClock {
 		}
 	}
 
-	// Following methods tests low borders Odd+even months
+	// Following operations tests low borders Odd+even months
 
 	// S4 --> S2 - set
 	@Test
@@ -258,7 +254,7 @@ public class TestClock {
 		}
 	}
 
-	// Following methods test february inputs
+	// Following operations test february inputs
 
 	// S4 --> S2 - set
 	@Test
@@ -291,7 +287,22 @@ public class TestClock {
 		}
 	}
 	
-	// TODO: Testmetod för default-values.
+	/**
+	 * Operation tests default values -Date
+	 */
+	public void testDefaultDate(){
+		Clock clockInstanceDefault1 = new Clock();
+//		String defaultDate = clockInstanceDefault.changeMode();		
+		assertEquals("2000-1-1", clockInstanceDefault1.changeMode());
+	}
+	/**
+	 * Operation test default values - Time
+	 */
+	public void testDefaultTime(){
+		Clock clockInstanceDefault2 = new Clock();
+//		String defaultDate = clockInstanceDefault.changeMode();		
+		assertEquals("2000-1-1", clockInstanceDefault2.changeMode());
+	}
 
 	@Before
 	public static void setUp() throws Exception {

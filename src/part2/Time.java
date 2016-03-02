@@ -17,8 +17,8 @@ public class Time {
 	 * @return - current set time
 	 */
 	public void timeSet(int hour, int minute, int second) {
-		if (hour > 00 && hour <= 24 && minute >= 00 && minute <= 60
-				&& second >= 00 && second <= 60) {
+		if (hour > 0 && hour <= 24 && minute >= 0 && minute <= 60
+				&& second >= 0 && second <= 60) {
 			this.hour = hour;
 			this.minute = minute;
 			this.second = second;
