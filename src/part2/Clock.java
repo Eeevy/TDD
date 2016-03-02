@@ -11,6 +11,7 @@ public class Clock {
 	 public Clock(){
 		 theTime = new Time();
 		 theDate = new Date();
+		 currentState = State.SHOWTIME;
 		 
 	 }
 	/**
