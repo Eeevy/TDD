@@ -21,14 +21,15 @@ public class Clock {
 	 * @return current date or time.
 	 */
 	public String changeMode() {
-//		if(this.currentState==State.SHOWDATE){
-//			this.currentState = State.SHOWTIME;
-//			return theTime.showTime();
-//		}else if(this.currentState == State.SHOWTIME){
-//			this.currentState = State.SHOWDATE;
-//			return theDate.showDate();
-//		}
-		return null;
+		String res = "";
+		if(this.currentState==State.SHOWDATE){
+			this.currentState = State.SHOWTIME;
+			res = theTime.showTime();
+		}else if(this.currentState == State.SHOWTIME){
+			this.currentState = State.SHOWDATE;
+			res = theDate.showDate();
+		}
+		return res;
 		
 	}
 
@@ -37,14 +38,15 @@ public class Clock {
 	 * @return
 	 */
 	public String reset() {
-//		if(this.currentState == State.SHOWTIME){
-//			this.currentState = State.CHANGETIME;
-//			return "Alter Time";
-//		}else if(this.currentState == State.SHOWDATE){
-//			this.currentState = State.CHANGEDATE;
-//			return "Alter Date";
-//		}
-		return null;
+		String res = "";
+		if(this.currentState == State.SHOWTIME){
+			this.currentState = State.CHANGETIME;
+			res = "Alter Time";
+		}else if(this.currentState == State.SHOWDATE){
+			this.currentState = State.CHANGEDATE;
+			res = "Alter Date";
+		}
+		return res;
 	}
 
 	/**
@@ -55,20 +57,25 @@ public class Clock {
 	 * @return current date or time depending on state
 	 */
 	public String set(int hourOrYear, int minuteOrMonth, int secondOrDay) {
-//		if(this.currentState == State.CHANGETIME){
-//			theTime.timeSet(hourOrYear, minuteOrMonth, secondOrDay);
-//			this.currentState = State.SHOWTIME;
-//			return theTime.showTime();
-//		}else if(this.currentState == State.CHANGEDATE){
-//			theDate.dateSet(hourOrYear, minuteOrMonth, secondOrDay);
-//			this.currentState = State.SHOWDATE;
-//		}
-		return null;
+		String res = null;
+		if(this.currentState == State.CHANGETIME){
+			res = theTime.timeSet(hourOrYear, minuteOrMonth, secondOrDay);
+			this.currentState = State.SHOWTIME;
+//			res =  theTime.showTime();
+		}else if(this.currentState == State.CHANGEDATE){
+			res = theDate.dateSet(hourOrYear, minuteOrMonth, secondOrDay);
+			this.currentState = State.SHOWDATE;
+//			res =  theDate.showDate();
+		}
+		return res;
 	}
 	
 	public State getCurrentState(){
 		return this.currentState;
+//		return null;
 	}
 	
-
+	public void setState(State state){
+		this.currentState = state;
+	}
 }

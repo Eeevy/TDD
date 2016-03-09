@@ -1,9 +1,9 @@
 package part2;
 
 public class Time {
-	private int hour = 0; // 24 h
-	private int minute = 0; // 59 min
-	private int second = 0; // 59 s
+	private int hour = 00; // 24 h
+	private int minute = 00; // 59 min
+	private int second = 00; // 59 s
 
 	public Time() {
 	}
@@ -16,14 +16,20 @@ public class Time {
 	 * @param second
 	 * @return - current set time
 	 */
-	public void timeSet(int hour, int minute, int second) {
-		if (hour > 0 && hour <= 24 && minute >= 0 && minute <= 60
+	public String timeSet(int hour, int minute, int second) {
+		String res = null;
+		if (hour > 00 && hour <= 24 && minute >= 00 && minute <= 60
 				&& second >= 0 && second <= 60) {
 			this.hour = hour;
 			this.minute = minute;
 			this.second = second;
+//			res = String.format("%2s %2s %2s", hour, minute, second);
+//			System.out.println(res);
+
+			res = String.format("%02d:%02d:%02d", hour, minute, second);
 
 		}
+		return res;
 	}
 
 	/**
@@ -31,7 +37,8 @@ public class Time {
 	 * @return
 	 */
 	public String showTime() {
-		return hour + ":" + minute + ":" + second;
+		return 	String.format("%02d:%02d:%02d", hour, minute, second);
+
 
 	}
 
