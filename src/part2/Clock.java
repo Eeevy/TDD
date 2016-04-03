@@ -21,7 +21,7 @@ public class Clock {
 	 * @return current date or time.
 	 */
 	public String changeMode() {
-		String res = "";
+		String res = null;
 		if(this.currentState==State.SHOWDATE){
 			this.currentState = State.SHOWTIME;
 			res = theTime.showTime();
@@ -38,7 +38,7 @@ public class Clock {
 	 * @return
 	 */
 	public String reset() {
-		String res = "";
+		String res = null;
 		if(this.currentState == State.SHOWTIME){
 			this.currentState = State.CHANGETIME;
 			res = "Alter Time";
@@ -69,13 +69,5 @@ public class Clock {
 		}
 		return res;
 	}
-	
-	public State getCurrentState(){
-		return this.currentState;
-//		return null;
-	}
-	
-	public void setState(State state){
-		this.currentState = state;
-	}
+
 }
