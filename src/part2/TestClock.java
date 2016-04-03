@@ -8,12 +8,19 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * S1 = DisplayTime S2 = Display Date S3 = Change Time S4 = Change Date
+ * S1 = DisplayTime 
+ * S2 = Display Date 
+ * S3 = Change Time 
+ * S4 = Change Date
  * 
- * CM = Change Mode R = Reset S = Set
+ * CM = Change Mode 
+ * R = Reset 
+ * S = Set
  * 
- * ----------CM-----R------S--- S1-------S2/D--S3/AT--S1/N--
- * S2-------S1/T--S4/AD--S2/N-- S3-------S3/N--S3/N---S1/T--
+ * ----------CM-----R------S--- 
+ * S1-------S2/D--S3/AT--S1/N--
+ * S2-------S1/T--S4/AD--S2/N-- 
+ * S3-------S3/N--S3/N---S1/T--
  * S4-------S4/N--S4/N---S2/D--
  * 
  * @author emmashakespeare & Evelyn Gustavsson
