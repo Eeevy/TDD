@@ -18,8 +18,8 @@ public class Time {
 	 */
 	public String timeSet(int hour, int minute, int second) {
 		String res = null;
-		if (hour > 00 && hour <= 24 && minute >= 00 && minute <= 60
-				&& second >= 0 && second <= 60) {
+		if (hour > 0 && hour <= 24 && minute >= 00 && minute < 60
+				&& second >= 0 && second < 60) {
 			this.hour = hour;
 			this.minute = minute;
 			this.second = second;

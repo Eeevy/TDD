@@ -13,16 +13,15 @@ public class TestBVADate {
 	@Before
 	public void setUpBeforeClass() throws Exception {
 		clockInstance = new Clock();
-
+		clockInstance.changeMode();
+		clockInstance.reset();
 	}
 	
 	/**
-	 * S4 --> S2 - DateSet high BVA should return expected
+	 * S4 --> S2 - DateSet high BVA should return expected 
 	 */
 	@Test
 	public void testSetDateOddMonthHighBVA1() {
-		clockInstance.changeMode();
-		clockInstance.reset();
 		assertEquals("2100-12-30", clockInstance.set(2100, 12, 30));
 
 	}
@@ -32,20 +31,34 @@ public class TestBVADate {
 	 */
 	@Test
 	public void testSetDateOddMonthHighBVA2() {
-		clockInstance.changeMode();
-		clockInstance.reset();
 		assertEquals("2100-12-31", clockInstance.set(2100, 12, 31));
 
 	}
 
 	/**
-	 * S4 --> S2 - DateSet odd month high BVA should return null
+	 * S4 --> S2 - DateSet odd month high BVA should return null (year above)
 	 */
 	@Test
 	public void testSetDateOddMonthHighBVA3BAD() {
-		clockInstance.changeMode();
-		clockInstance.reset();
-		assertNull(clockInstance.set(2101, 13, 32));
+		assertNull(clockInstance.set(2101, 12, 31));
+
+	}
+	
+	/**
+	 * S4 --> S2 - DateSet odd month high BVA should return null (month above)
+	 */
+	@Test
+	public void testSetDateOddMonthHighBVA4BAD() {
+		assertNull(clockInstance.set(2100, 13, 31));
+
+	}
+	
+	/**
+	 * S4 --> S2 - DateSet odd month high BVA should return null (day above)
+	 */
+	@Test
+	public void testSetDateOddMonthHighBVA5BAD() {
+		assertNull(clockInstance.set(2100, 12, 32));
 
 	}
 
@@ -57,9 +70,7 @@ public class TestBVADate {
 	 */
 	@Test
 	public void testSetDateEvenMonthHighBVA1() {
-		clockInstance.changeMode();
-		clockInstance.reset();
-		assertEquals("2100-12-29", clockInstance.set(2100, 12, 29));
+		assertEquals("2100-06-29", clockInstance.set(2100, 6, 29));
 	}
 
 	/**
@@ -67,20 +78,34 @@ public class TestBVADate {
 	 */
 	@Test
 	public void testSetDateEvenMonthHighBVA2() {
-		clockInstance.changeMode();
-		clockInstance.reset();
-		assertEquals("2100-12-30", clockInstance.set(2100, 12, 30));
+		assertEquals("2100-06-30", clockInstance.set(2100, 6, 30));
 
 	}
 
 	/**
-	 * S4 --> S2 - DateSet even month high BVA should return null
+	 * S4 --> S2 - DateSet even month high BVA should return null (year above)
 	 */
 	@Test
 	public void testSetDateEvenMonthHighBVA3BAD() {
-		clockInstance.changeMode();
-		clockInstance.reset();
-		assertNull(clockInstance.set(2101, 13, 31));
+		assertNull(clockInstance.set(2101, 6, 30));
+
+	}
+	
+	/**
+	 * S4 --> S2 - DateSet even month high BVA should return null (month above)
+	 */
+	@Test
+	public void testSetDateEvenMonthHighBVA4BAD() {
+		assertNull(clockInstance.set(2100, 13, 30));
+
+	}
+	
+	/**
+	 * S4 --> S2 - DateSet even month high BVA should return null (day above)
+	 */
+	@Test
+	public void testSetDateEvenMonthHighBVA5BAD() {
+		assertNull(clockInstance.set(2100, 6, 31));
 
 	}
 
@@ -91,10 +116,8 @@ public class TestBVADate {
 	 */
 	@Test
 	public void testSetDateLowBVA1() {
-		clockInstance.changeMode();
-		clockInstance.reset();
-		String expected = "2001-02-02";
-		assertEquals(expected, clockInstance.set(2001, 02, 02));
+		String expected = "2001-03-02";
+		assertEquals(expected, clockInstance.set(2001, 03, 02));
 
 	}
 
@@ -103,21 +126,35 @@ public class TestBVADate {
 	 */
 	@Test
 	public void testSetDateLowBVA2() {
-		clockInstance.changeMode();
-		clockInstance.reset();
 		String expected = "2000-01-01";
 		assertEquals(expected, clockInstance.set(2000, 01, 01));
 
 	}
 
 	/**
-	 * S4 --> S2 - DateSet even+odd month low BVA should return NULL
+	 * S4 --> S2 - DateSet even+odd month low BVA should return NULL (year below)
 	 */
 	@Test
 	public void testSetDateMonthLowBVA3BAD() {
-		clockInstance.changeMode();
-		clockInstance.reset();
-		assertNull(clockInstance.set(1999, 00, 00));
+		assertNull(clockInstance.set(1999, 01, 01));
+
+	}
+	
+	/**
+	 * S4 --> S2 - DateSet even+odd month low BVA should return NULL (month below)
+	 */
+	@Test
+	public void testSetDateMonthLowBVA4BAD() {
+		assertNull(clockInstance.set(2000, 00, 01));
+
+	}
+	
+	/**
+	 * S4 --> S2 - DateSet even+odd month low BVA should return NULL (day below)
+	 */
+	@Test
+	public void testSetDateMonthLowBVA5BAD() {
+		assertNull(clockInstance.set(2000, 01, 00));
 
 	}
 
@@ -129,8 +166,6 @@ public class TestBVADate {
 	  */
 	@Test
 	public void testSetDateFebruaryBVA1() {
-		clockInstance.changeMode();
-		clockInstance.reset();
 		String expected = "2099-11-28";
 		assertEquals(expected, clockInstance.set(2099, 11, 28));
 
@@ -142,22 +177,18 @@ public class TestBVADate {
 	  */
 	@Test
 	public void testSetDateFebruaryBVA2() {
-		clockInstance.changeMode();
-		clockInstance.reset();
-		String expected = "2099-12-29";
-		assertEquals(expected, clockInstance.set(2099, 12, 29));
+		String expected = "2099-02-29";
+		assertEquals(expected, clockInstance.set(2099, 2, 29));
 
 	}
 
 	
 	 /**
-	  * S4 --> S2 - DateSet february month high BVA should return NULL
+	  * S4 --> S2 - DateSet february month high BVA should return NULL (day above)
 	  */
 	@Test
 	public void testSetDateFebruaryLowBVA3() {
-		clockInstance.changeMode();
-		clockInstance.reset();
-		assertNull(clockInstance.set(2101, 13, 30));
+		assertNull(clockInstance.set(2100, 2, 30));
 
 	}
 

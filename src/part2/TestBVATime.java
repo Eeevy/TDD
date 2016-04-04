@@ -12,46 +12,56 @@ public class TestBVATime {
 	@Before
 	public void setUpBeforeClass() throws Exception {
 		clockInstance = new Clock();
-
+		clockInstance.reset();
 	}
 	
 	/**
-	 * S3 --> S1 - TimeSet high BVA should return expected
+	 * S3 --> S1 - TimeSet high BVA should return expected (below border)
 	 */
 	@Test
 	public void testSetTimeHighBVA1() {
-		clockInstance.reset();
-		assertEquals("23:58:58", clockInstance.set(23, 58, 58));
+		assertEquals("23:59:59", clockInstance.set(23, 59, 59));
 
 	}
 
 	/**
-	 * S3 --> S1 - TimeSet high BVA should return expected
+	 * S3 --> S1 - TimeSet high BVA should return expected (on border)
 	 */
 	@Test
 	public void testSetTimeHighBVA2() {
-		clockInstance.reset();
-		assertEquals("24:59:59", clockInstance.set(24, 59, 59));
+		assertEquals("24:00:00", clockInstance.set(24, 00, 00));
 
 	}
 
 	/**
-	 * S3 --> S1 - TimeSet high BVA should return null
+	 * S3 --> S1 - TimeSet high BVA should return null (hour above)
 	 */
 	@Test
 	public void testSetTimeHighBVA3BAD() {
-		clockInstance.reset();
-		assertNull(clockInstance.set(25, 60, 60));
-		// assertNotSame("25:60:60", clockInstance.set(25, 60, 60)); //Good as
-		// well
+		assertNull(clockInstance.set(25, 59, 59));
+	}
+	
+	/**
+	 * S3 --> S1 - TimeSet high BVA should return null (minute above)
+	 */
+	@Test
+	public void testSetTimeHighBVA4BAD() {
+		assertNull(clockInstance.set(22, 60, 25));
+	}
+	
+	/**
+	 * S3 --> S1 - TimeSet high BVA should return null (second above)
+	 */
+	@Test
+	public void testSetTimeHighBVA5BAD() {
+		assertNull(clockInstance.set(22, 23, 60));
 	}
 
 	/**
-	 * S3 --> S1 - TimeSet low BVA should return expected
+	 * S3 --> S1 - TimeSet low BVA should return expected 
 	 */
 	@Test
 	public void testSetTimeLowBVA1() {
-		clockInstance.reset();
 		assertEquals("02:01:01", clockInstance.set(2, 1, 1));
 
 	}
@@ -61,18 +71,34 @@ public class TestBVATime {
 	 */
 	@Test
 	public void testSetTimeLowBVA2() {
-		clockInstance.reset();
 		assertEquals("01:01:01", clockInstance.set(1, 1, 1));
 
 	}
 
 	/**
-	 * S3 --> S1 - TimeSet low BVA should return null
+	 * S3 --> S1 - TimeSet low BVA should return null (hour above)
 	 */
 	@Test
 	public void testSetTimeLowBVA3BAD() {
-		clockInstance.reset();
-		assertNull(clockInstance.set(00, -1, -1));
+		assertNull(clockInstance.set(25, 0, 0));
+
+	}
+	
+	/**
+	 * S3 --> S1 - TimeSet low BVA should return null (minute above)
+	 */
+	@Test
+	public void testSetTimeLowBVA4BAD() {
+		assertNull(clockInstance.set(22, 60, 23));
+
+	}
+	
+	/**
+	 * S3 --> S1 - TimeSet low BVA should return null (second above)
+	 */
+	@Test
+	public void testSetTimeLowBVA5BAD() {
+		assertNull(clockInstance.set(22, 45, 60));
 
 	}
 
