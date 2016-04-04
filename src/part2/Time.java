@@ -23,10 +23,9 @@ public class Time {
 			this.hour = hour;
 			this.minute = minute;
 			this.second = second;
-//			res = String.format("%2s %2s %2s", hour, minute, second);
-//			System.out.println(res);
 
-			res = String.format("%02d:%02d:%02d", hour, minute, second);
+
+			res = showTime();
 
 		}
 		return res;

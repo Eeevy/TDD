@@ -61,11 +61,9 @@ public class Clock {
 		if(this.currentState == State.CHANGETIME){
 			res = theTime.timeSet(hourOrYear, minuteOrMonth, secondOrDay);
 			this.currentState = State.SHOWTIME;
-//			res =  theTime.showTime();
 		}else if(this.currentState == State.CHANGEDATE){
 			res = theDate.dateSet(hourOrYear, minuteOrMonth, secondOrDay);
 			this.currentState = State.SHOWDATE;
-//			res =  theDate.showDate();
 		}
 		return res;
 	}
